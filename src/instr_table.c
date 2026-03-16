@@ -52,14 +52,10 @@ static Instruction instructions[] = {
     
     // J-type
     {"jal", FMT_J, 0x6f, 0, 0},
-    {"jal",   FMT_J, 0x6F, 0, 0},
-    {"jalr",  FMT_I, 0x67, 0, 0},
-    {"lui",   FMT_U, 0x37, 0, 0},
-    {"auipc", FMT_U, 0x17, 0, 0},
     
     // System
     {"ecall", FMT_I, 0x73, 0x0, 0},
-    {"ebreak", FMT_I, 0x73, 0x0, 0x00000001}, // func7 for ebreak is 1, but usually imm=1
+    {"ebreak", FMT_I, 0x73, 0x0, 0x00000001},
     
     {NULL, 0, 0, 0, 0} // sentinel
 };

@@ -5,7 +5,7 @@ uint32_t encode_r(uint32_t opcode, uint32_t rd, uint32_t func3, uint32_t rs1, ui
 }
 
 uint32_t encode_i(uint32_t opcode, uint32_t rd, uint32_t func3, uint32_t rs1, int32_t imm) {
-    uint32_t imm12 = imm & 0xFFF;
+    uint32_t imm12 = (uint32_t)imm & 0xFFF;
     return (imm12 << 20) | (rs1 << 15) | (func3 << 12) | (rd << 7) | opcode;
 }
 
@@ -16,7 +16,7 @@ uint32_t encode_s(uint32_t opcode, uint32_t func3, uint32_t rs1, uint32_t rs2, i
 }
 
 uint32_t encode_b(uint32_t opcode, uint32_t func3, uint32_t rs1, uint32_t rs2, int32_t imm) {
-    uint32_t imm12 = (imm >> 11) & 1;
+    uint32_t imm12 = (imm >> 12) & 1;   // was (imm >> 11) -- bug: bit12 slot read bit11
     uint32_t imm11 = (imm >> 11) & 1;
     uint32_t imm10_5 = (imm >> 5) & 0x3F;
     uint32_t imm4_1 = (imm >> 1) & 0xF;
